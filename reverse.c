@@ -4,7 +4,10 @@
 #include <stddef.h>                 //importing libraries
 
 
-
+void message_printer(const char *msg) {      //Function for printing errors and messages
+    fprintf(stderr, "%s\n", msg);
+    exit(1);
+}
 
 
 
@@ -15,7 +18,7 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
     char **lines_array = NULL;       //variable for storing the input lines
     size_t lines_counter = 0, lines_c = 10;        //Line counter. line capacity is also set for optimization (to be fixed)
     char *line = NULL;               //variable for single line initialization
-    size_t length = 0;                  //variable for determining the length of the line
+    size_t length = 0;                  //variable for determining the length of the line, acts as a buffer size
     long read;                        //read variable, for reading the lines
     
     
@@ -40,6 +43,17 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
 
 
     if (arg_counter == 3) {              //open output file in case if 2 arguments provided
+
+     //Checking if input and output files are different (part of the "Assumptions and Errors")
+
+    if (strcmp(arg_select[1], arg_select[2]) == 0) {         //Using strcmp to compare    
+
+            fclose(inF);  //closing the input file
+
+            message_printer("Input and output file must differ");   //using universal function to print the error
+
+            exit(1);   //exiting with error code
+        }
        
         
 
@@ -112,6 +126,7 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
     
     
 }
+
 
 
 
