@@ -146,6 +146,12 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
 
     free(lines_array);   //Freeing the array
     free(line);       //Freeing the line variable
+
+    if (inF != stdin) fclose(inF);  //closing input file
+
+    if (outF != stdout) fclose(outF); //closing output file
+
+
     return 0;    //returning the function
     
     
