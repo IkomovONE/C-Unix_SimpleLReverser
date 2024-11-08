@@ -6,7 +6,6 @@
 
 void message_printer(const char *msg) {      //Function for printing errors and messages
     fprintf(stderr, "%s\n", msg);
-    exit(1);
 }
 
 
@@ -20,6 +19,7 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
     char *line = NULL;               //variable for single line initialization
     size_t length = 0;                  //variable for determining the length of the line, acts as a buffer size
     long read;                        //read variable, for reading the lines
+    char message [50];  //variable for editing error messages
     
     
     
@@ -34,6 +34,17 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
         
 
         inF = fopen(arg_select[1], "r");  
+
+        if (!inF) {       //Checks if the existing file was able to be opened, prints error if not ("Assumptions and errors") 
+
+            sprintf(message, "error: cannot open file '%s'", arg_select[1]);
+
+            message_printer(message); //calling error message function
+
+            exit(1); //exiting with error code
+
+
+        }
        
 
 
@@ -48,10 +59,10 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
 
     if (strcmp(arg_select[1], arg_select[2]) == 0) {         //Using strcmp to compare    
 
-            fclose(inF);  //closing the input file
+            
 
             message_printer("Input and output file must differ");   //using universal function to print the error
-
+            fclose(inF);  //closing the input file
             exit(1);   //exiting with error code
         }
        
@@ -59,6 +70,18 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
 
 
         outF = fopen(arg_select[2], "w");
+
+
+        if (!outF) {   //Checks if the existing file was able to be opened, prints error if not ("Assumptions and errors") 
+
+            sprintf(message, "error: cannot open file '%s'", arg_select[2]);
+
+            message_printer(message); //calling error message function
+
+            exit(1);  //exiting with error code
+
+
+        }
         
     }
 
