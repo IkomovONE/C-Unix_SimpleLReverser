@@ -8,7 +8,7 @@
 
 
 
-int main(int argc, char *argv[]) {                 //defining main method, with future arguments
+int main(int arg_counter, char *arg_select[]) {                 //defining main method, with future arguments
 
     FILE *inF = stdin;               //input variable, can be used for making manual input or for opening an input file, set to manual input
     FILE *outF = stdout;             //output variable, set to print the content by default, can be changed to a file
@@ -17,6 +17,47 @@ int main(int argc, char *argv[]) {                 //defining main method, with 
     char *line = NULL;               //variable for single line initialization
     size_t length = 0;                  //variable for determining the length of the line
     long read;                        //read variable, for reading the lines
+    
+    
+    
+
+
+
+    //creating if-conditions for each program run use case 
+    
+
+    if (arg_counter >= 2) {         //open input file in case if at least 1 argument provided
+
+        
+
+        inF = fopen(arg_select[1], "r");  
+       
+
+
+    } 
+
+    //there's no condition for 0 arguments: do nothing in case of no arguments provided, keep the variables set to srdin & stdout
+
+
+    if (arg_counter == 3) {              //open output file in case if 2 arguments provided
+       
+        
+
+
+        outF = fopen(arg_select[2], "w");
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
     
 
 
