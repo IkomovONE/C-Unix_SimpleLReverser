@@ -48,7 +48,8 @@ int main(int argc, char *argv[]) {                 //defining main method, with 
 
 
     // Printing the lines using for-loop
-    for (long i = 0; i < lines_counter; i++) {
+    for (long i = lines_counter - 1; i >= 0; i--) {
+        
 
         fprintf(outF, "%s", lines_array[i]);  //printing
 
