@@ -83,16 +83,18 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
     //Creating a while loop for reading the lines, adding each line to array
         
     while ((read = getline(&line, &length, inF)) != -1) {
-        
-        if (lines_counter >= lines_c) {
-            lines_c *= 2;
 
-            lines_array = realloc(lines_array, lines_c * sizeof(char *));
+        //Adding handling for large input files("Assumptions and errors")
+        
+        if (lines_counter >= lines_c) {  //Checking of line count exceeds the line capacity
+            lines_c *= 4;   // multiply the capacity x4 in case if it's exceeded
+
+            lines_array = realloc(lines_array, lines_c * sizeof(char *));  //Reallocate the memory for the array
             
 
         }
         
-        lines_array[lines_counter++] = strdup(line);     
+        lines_array[lines_counter++] = strdup(line);  //add the line to the array
 
     }
     
