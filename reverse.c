@@ -99,6 +99,12 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
 
 
     lines_array = malloc(lines_c * sizeof(char *));   //Allocating memory for the array
+
+    if (!lines_array) {              //print malloc failed error if allocation is failed ("Assumptions and errors")
+        message_printer("malloc failed");    //calling message printer
+
+        exit(1);  //exiting with error code
+    }
     
         
 
@@ -113,6 +119,12 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
             lines_c *= 4;   // multiply the capacity x4 in case if it's exceeded
 
             lines_array = realloc(lines_array, lines_c * sizeof(char *));  //Reallocate the memory for the array
+            
+            if (!lines_array) {               //print malloc failed error if allocation is failed ("Assumptions and errors")
+                message_printer("malloc failed");             //calling message printer
+
+                exit(1);    //exiting with error code
+            }
             
 
         }
