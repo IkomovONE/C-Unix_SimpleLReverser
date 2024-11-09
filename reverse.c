@@ -27,6 +27,16 @@ int main(int arg_counter, char *arg_select[]) {                 //defining main 
 
 
     //creating if-conditions for each program run use case 
+
+    if (arg_counter > 3) {  //Adding "usage" printout if too many args provided ("Assumptions and errors")
+
+        message_printer("usage: reverse <input> <output>"); //using error printer to print
+
+        exit(1);     //exiting with error code
+
+
+
+    }
     
 
     if (arg_counter >= 2) {         //open input file in case if at least 1 argument provided
